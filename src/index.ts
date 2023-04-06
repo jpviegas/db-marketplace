@@ -1,9 +1,8 @@
-import * as dotenv from 'dotenv';
-
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import * as dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import mongoose from 'mongoose';
@@ -14,7 +13,7 @@ const app = express()
 
 app.use(cors({
   credentials: true
-}))
+}));
 
 app.use(compression())
 app.use(cookieParser())
@@ -31,4 +30,4 @@ const MONGO_PASS = process.env.MONGODB_PASS
 const MONGO_URL = `mongodb+srv://${MONGO_ADM}:${MONGO_PASS}@marketplace.drvn9ty.mongodb.net/Market_db?retryWrites=true&w=majority`
 mongoose.Promise = Promise
 mongoose.connect(MONGO_URL)
-mongoose.connection.on('error', (error: Error) => console.error(error))
+mongoose.connection.on('error', (error: Error) => { console.error(error); })
